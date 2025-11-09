@@ -1,2 +1,3 @@
 # sadenice
 website sadenice 
+autodeploy
