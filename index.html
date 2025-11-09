@@ -1,960 +1,387 @@
 <!DOCTYPE html>
 <html lang="sk">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Priesady Peter a Iveta - Nitra</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --dark-green: #2d5016;
-            --medium-green: #4a7c2d;
-            --light-green: #a8c090;
-            --cream: #fef9f3;
-            --white: #ffffff;
-        }
-
-        html {
-            scroll-behavior: smooth;
-            overflow-x: hidden;
-            width: 100%;
-        }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background-color: var(--cream);
-            overflow-x: hidden;
-            width: 100%;
-            position: relative;
-            padding-top: 70px;
-        }
-
-        /* Header & Navigation */
-        header {
-            background: var(--white);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            width: 100%;
-        }
-
-        nav {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 1.5rem;
-            position: relative;
-        }
-
-        .logo {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: var(--dark-green);
-            z-index: 1001;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--dark-green);
-            font-weight: 500;
-            transition: color 0.3s;
-            display: block;
-            padding: 0.5rem 0;
-        }
-
-        .nav-links a:hover {
-            color: var(--medium-green);
-        }
-
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            gap: 5px;
-            z-index: 1001;
-        }
-
-        .hamburger span {
-            width: 25px;
-            height: 3px;
-            background: var(--dark-green);
-            transition: 0.3s;
-            border-radius: 3px;
-        }
-
-        /* Hero Section */
+        html, body {height:100%;width:100%;overflow-x:hidden;background:#fef9f3;}
+        body {font-family:'Poppins',sans-serif;line-height:1.6;color:#333;padding-top:70px;margin:0;min-width:0;}
+        * {box-sizing:border-box;}
+        header {position:fixed;top:0;left:0;right:0;z-index:1000;background:#fff;box-shadow:0 2px 10px rgba(0,0,0,0.1);}
+        nav {max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;padding:1rem 1vw;}
+        .logo {font-size:1.3rem;font-weight:700;color:#2d5016;}
+        .nav-links {display:flex;list-style:none;gap:2rem;}
+        .nav-links a {text-decoration:none;color:#2d5016;font-weight:500;transition:color 0.3s;padding:0.5rem;}
+        .nav-links a:hover {color:#4a7c2d;}
+        .hamburger {display:none;flex-direction:column;cursor:pointer;gap:5px;}
+        .hamburger span {width:25px;height:3px;background:#2d5016;border-radius:3px;}
         .hero {
-            background: linear-gradient(135deg, var(--dark-green) 0%, var(--medium-green) 100%);
-            color: white;
-            padding: 4rem 1.5rem;
-            text-align: center;
-            width: 100%;
+            width:100vw;min-width:100vw;
+            margin-left:50%;
+            transform:translateX(-50%);
+            background:linear-gradient(135deg,#2d5016 0%,#4a7c2d 100%);
+            color:white;
+            text-align:center;
+            padding:4rem 0 4rem 0;
+            box-sizing:border-box;
         }
-
-        .hero h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            font-weight: 700;
+        .hero h1{font-size:2.5rem;margin-bottom:1rem;font-weight:700;}
+        .hero p{font-size:1.1rem;margin-bottom:0.5rem;}
+        .season{font-size:1.3rem;font-weight:600;margin:2rem 0;padding:1rem;background:rgba(255,255,255,0.1);border-radius:10px;display:inline-block;}
+        .cta-buttons{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-top:1.5rem;}
+        .cta-button{display:inline-block;padding:0.9rem 2rem;background:white;color:#2d5016;text-decoration:none;border-radius:50px;font-weight:600;transition:transform 0.3s,box-shadow 0.3s;}
+        .cta-button:hover{transform:translateY(-3px);box-shadow:0 10px 25px rgba(0,0,0,0.2);}
+        .cta-button.secondary{background:#4a7c2d;color:white;}
+        .opening-hours{
+            background:#4a7c2d;
+            color:white;
+            padding:0;
+            width:100vw;
+            margin-left:50%;
+            transform:translateX(-50%);
+            margin-bottom:2rem;
         }
-
-        .hero p {
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-            opacity: 0.95;
+        .opening-hours-content{
+            display:flex;
+            justify-content:center;
+            align-items:stretch;
+            gap:2rem;
+            padding:2.5rem 1vw;
+            max-width:900px;
+            margin:0 auto;
+            flex-wrap:wrap;
         }
-
-        .hero .season {
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin: 2rem 0;
-            padding: 1rem;
-            background: rgba(255,255,255,0.1);
-            border-radius: 10px;
-            display: inline-block;
+        .hour-day{
+            background:rgba(255,255,255,0.13);
+            border-radius:12px;
+            padding:1.6rem 2.2rem;
+            text-align:center;
+            min-width:180px;
+            flex:1 1 180px;
+            box-shadow:0 2px 9px rgba(0,0,0,0.03);
+            margin-bottom:7px;
         }
-
-        .cta-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-top: 1.5rem;
+        .hour-day strong{
+            display:block;
+            font-size:1.22rem;
+            margin-bottom:0.5rem;
+            letter-spacing:0.5px;
         }
-
-        .cta-button {
-            display: inline-block;
-            padding: 0.9rem 2rem;
-            background: white;
-            color: var(--dark-green);
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-        }
-
-        .cta-button.secondary {
-            background: var(--medium-green);
-            color: white;
-        }
-
-        /* Opening Hours */
-        .opening-hours {
-            background: var(--medium-green);
-            color: white;
-            padding: 3rem 1.5rem;
-            text-align: center;
-            width: 100%;
-        }
-
-        .opening-hours h2 {
-            font-size: 2rem;
-            margin-bottom: 2rem;
-            color: white;
-        }
-
-        .hours-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .hour-item {
-            background: rgba(255,255,255,0.1);
-            padding: 1.5rem;
-            border-radius: 10px;
-            font-size: 1.1rem;
-        }
-
-        .hour-item strong {
-            display: block;
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        /* Section Styles */
-        section {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 3rem 1.5rem;
-            width: 100%;
-        }
-
-        h2 {
-            font-size: 2.2rem;
-            color: var(--dark-green);
-            margin-bottom: 2.5rem;
-            text-align: center;
-        }
-
-        /* Products Section - INTERAKTÍVNE KARTY */
-        .product-categories {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 3rem;
-        }
-
-        .category-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            text-align: center;
-            transition: transform 0.3s, box-shadow 0.3s;
-            cursor: pointer;
-            text-decoration: none;
-            color: inherit;
-            display: block;
-        }
-
-        .category-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
-        }
-
-        .category-icon {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .category-card h3 {
-            color: var(--dark-green);
-            font-size: 1.4rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .category-card p {
-            color: #666;
-            font-size: 0.95rem;
-        }
-
-        .category-card .arrow {
-            margin-top: 1rem;
-            color: var(--medium-green);
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
-
-        /* Product Details - S HOVER FOTKAMI */
-        .product-details {
-            display: none; /* Skryté, zobrazia sa po kliknutí */
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .product-details.active {
-            display: grid;
-        }
-
-        .product-group {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-        }
-
-        .product-group h3 {
-            color: var(--medium-green);
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-            border-bottom: 2px solid var(--light-green);
-            padding-bottom: 0.5rem;
-        }
-
-        .product-group h4 {
-            color: var(--dark-green);
-            font-size: 1.05rem;
-            margin-top: 1.2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .product-list {
-            list-style: none;
-        }
-
-        .product-list li {
-            padding: 0.4rem 0;
-            border-bottom: 1px solid #f0f0f0;
-            color: #555;
-            font-size: 0.95rem;
-            position: relative;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-
-        .product-list li:hover {
-            background: #f9f9f9;
-            padding-left: 0.5rem;
-        }
-
-        .product-list li:last-child {
-            border-bottom: none;
-        }
-
-        .product-list li:before {
-            content: "🌱 ";
-            margin-right: 0.5rem;
-        }
-
-        /* Tooltip pre fotky odrôd */
+        .hour-day.closed{opacity:0.6;}
+        section{max-width:1200px;margin:0 auto;padding:2.5rem 1vw;width:100vw;}
+        h2{font-size:2.2rem;color:#2d5016;margin-bottom:2.3rem;text-align:center;}
+        .product-categories{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.2rem;margin-bottom:1.5rem;}
+        .category-card{background:white;padding:2rem;border-radius:15px;box-shadow:0 5px 20px rgba(0,0,0,0.10);text-align:center;transition:transform 0.3s,box-shadow 0.3s;cursor:pointer;}
+        .category-card:hover{transform:translateY(-10px);box-shadow:0 15px 40px rgba(0,0,0,0.15);}
+        .category-icon{font-size:3.5rem;margin-bottom:1rem;}
+        .category-card h3{color:#2d5016;font-size:1.4rem;}
+        .category-card p{color:#666;font-size:0.97rem;}
+        .product-details{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:1.5rem;margin-top:2.5rem;}
+        .product-group{background:white;padding:1.5rem 1rem;border-radius:15px;box-shadow:0 5px 20px rgba(0,0,0,0.1);}
+        .product-group h3{color:#4a7c2d;font-size:1.2rem;margin-bottom:0.7rem;border-bottom:2px solid #a8c090;}
+        .product-list{list-style:none;margin:0;padding:0;}
+        .product-list li{padding:0.39rem 0;border-bottom:1px solid #f0f0f0;color:#555;font-size:0.96rem;}
+        .product-list li:last-child{border-bottom:none;}
+        .product-list li:before{content:'🌱 ';margin-right:0.5rem;}
+        /* Tooltip pre obrázky produktov */
+        .with-image {position:relative;cursor:pointer;}
         .product-tooltip {
-            display: none;
-            position: absolute;
-            left: 100%;
-            top: 50%;
-            transform: translateY(-50%);
-            margin-left: 1rem;
-            z-index: 100;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            padding: 0.5rem;
-            pointer-events: none;
+            display:none;
+            position:absolute;
+            left:105%;
+            top:50%;
+            transform:translateY(-50%);
+            z-index:100;
+            background:white;
+            border-radius:10px;
+            box-shadow:0 10px 30px rgba(0,0,0,0.27);
+            padding:0.5rem;
+            width:210px;
+            pointer-events:none;
         }
-
-        .product-list li:hover .product-tooltip {
-            display: block;
+        .with-image:hover .product-tooltip,
+        .with-image.show-tooltip .product-tooltip {
+            display:block;
         }
-
         .product-tooltip img {
-            width: 200px;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 8px;
+            width:200px;
+            height:200px;
+            object-fit:cover;
+            border-radius:8px;
         }
-
         .product-tooltip-name {
-            text-align: center;
-            font-weight: 600;
-            margin-top: 0.5rem;
-            color: var(--dark-green);
+            display:block;
+            text-align:center;
+            font-weight:600;
+            margin-top:0.5rem;
+            color:#2d5016;
         }
-
-        /* Back button */
-        .back-button {
-            display: inline-block;
-            margin-bottom: 2rem;
-            padding: 0.8rem 1.5rem;
-            background: var(--light-green);
-            color: var(--dark-green);
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            transition: all 0.3s;
-        }
-
-        .back-button:hover {
-            background: var(--medium-green);
-            color: white;
-        }
-
-        /* FOTO GALÉRIA */
-        .gallery {
-            background: white;
-            border-radius: 15px;
-            padding: 2.5rem 1.5rem;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-        }
-
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .gallery-item {
-            position: relative;
-            overflow: hidden;
-            border-radius: 10px;
-            cursor: pointer;
-            aspect-ratio: 1;
-            background: #f0f0f0;
-        }
-
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s;
-        }
-
-        .gallery-item:hover img {
-            transform: scale(1.1);
-        }
-
-        .gallery-item-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
-            color: white;
-            padding: 1rem;
-            transform: translateY(100%);
-            transition: transform 0.3s;
-        }
-
-        .gallery-item:hover .gallery-item-overlay {
-            transform: translateY(0);
-        }
-
-        /* About Section */
-        .about {
-            background: white;
-            border-radius: 15px;
-            padding: 2.5rem 1.5rem;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-        }
-
-        .about p {
-            font-size: 1.05rem;
-            line-height: 1.8;
-            color: #555;
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        /* Contact Section */
-        .contact {
-            background: linear-gradient(135deg, var(--light-green) 0%, var(--medium-green) 100%);
-            color: white;
-            border-radius: 15px;
-            padding: 2rem 1rem;
-            margin: 0 auto;
-            max-width: 100%;
-        }
-
-        .contact h2 {
-            color: white;
-            margin-bottom: 2rem;
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 1.5rem;
-            margin-top: 1.5rem;
-            width: 100%;
-        }
-
-        .contact-item {
-            background: rgba(255,255,255,0.15);
-            padding: 1.3rem 1rem;
-            border-radius: 10px;
-            word-wrap: break-word;
-            overflow-wrap: break-word;
-        }
-
-        .contact-item h3 {
-            font-size: 1.15rem;
-            margin-bottom: 0.7rem;
-        }
-
-        .contact-item p, 
-        .contact-item a {
-            color: white;
-            text-decoration: none;
-            font-size: 0.95rem;
-            word-break: break-word;
-        }
-
-        .contact-item a:hover {
-            text-decoration: underline;
-        }
-
-        .notice {
-            background: rgba(255,255,255,0.2);
-            padding: 1.3rem;
-            border-radius: 10px;
-            margin-top: 2rem;
-            text-align: center;
-            font-weight: 500;
-            font-size: 0.95rem;
-        }
-
-        /* Footer */
-        footer {
-            background: var(--dark-green);
-            color: white;
-            padding: 2rem 1.5rem;
-            text-align: center;
-            width: 100%;
-        }
-
-        .social-links {
-            margin-top: 1rem;
-        }
-
-        .social-links a {
-            color: white;
-            text-decoration: none;
-            margin: 0 1rem;
-            font-size: 1.2rem;
-            transition: opacity 0.3s;
-        }
-
-        .social-links a:hover {
-            opacity: 0.7;
-        }
-
-        /* Mobile Responsive */
-        @media (max-width: 768px) {
-            body {
-                padding-top: 60px;
-            }
-
-            nav {
-                padding: 0.8rem 1rem;
-            }
-
-            .logo {
-                font-size: 1.1rem;
-            }
-
-            .nav-links {
-                position: fixed;
-                left: -100%;
-                top: 60px;
-                flex-direction: column;
-                background-color: var(--white);
-                width: 100%;
-                text-align: center;
-                transition: left 0.3s ease;
-                box-shadow: 0 10px 27px rgba(0,0,0,0.15);
-                padding: 1.5rem 0;
-                gap: 0;
-                max-height: calc(100vh - 60px);
-                overflow-y: auto;
-            }
-
-            .nav-links li {
-                width: 100%;
-                padding: 0.5rem 0;
-            }
-
-            .nav-links a {
-                padding: 1rem;
-                width: 100%;
-            }
-
-            .nav-links.active {
-                left: 0;
-            }
-
-            .hamburger {
-                display: flex;
-            }
-
-            .hero {
-                padding: 3rem 1rem;
-            }
-
-            .hero h1 {
-                font-size: 1.8rem;
-            }
-
-            .hero p {
-                font-size: 1rem;
-            }
-
-            .hero .season {
-                font-size: 1.1rem;
-                padding: 0.8rem;
-            }
-
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .cta-button {
-                width: 100%;
-                max-width: 280px;
-            }
-
-            h2 {
-                font-size: 1.8rem;
-            }
-
-            .opening-hours {
-                padding: 2rem 1rem;
-            }
-
-            .opening-hours h2 {
-                font-size: 1.7rem;
-            }
-
-            .hours-grid {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-            }
-
-            section {
-                padding: 2rem 1rem;
-            }
-
-            .product-categories {
-                grid-template-columns: 1fr;
-                gap: 1.2rem;
-            }
-
-            .product-details {
-                grid-template-columns: 1fr;
-                gap: 1.2rem;
-            }
-
-            .contact {
-                padding: 2rem 1rem;
-                border-radius: 10px;
-            }
-
-            .contact-grid {
-                grid-template-columns: 1fr;
-                gap: 1.2rem;
-            }
-
-            .contact-item {
-                padding: 1.2rem 1rem;
-            }
-
-            .gallery-grid {
-                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-                gap: 1rem;
-            }
-
-            /* Tooltip na mobile skrytý */
+        .gallery{background:#fff;border-radius:15px;padding:2.5rem 1.2rem;box-shadow:0 5px 20px rgba(0,0,0,0.1);}
+        .gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1.5rem;margin-top:2rem;}
+        .gallery-item{position:relative;overflow:hidden;border-radius:10px;cursor:pointer;aspect-ratio:1;background:#f0f0f0;}
+        .gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform 0.3s;}
+        .gallery-item:hover img{transform:scale(1.06);}
+        .gallery-item-overlay{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(0,0,0,0.68),transparent);color:white;padding:1rem;}
+        .about-container{display:flex;gap:2rem;align-items:center;max-width:900px;margin:0 auto;}
+        .about-img{flex:0 0 150px;}
+        .about-img img{width:150px;height:150px;object-fit:cover;border-radius:12px;box-shadow:0 2px 12px rgba(0,0,0,0.08);}
+        .about-text{flex:1;}
+        .contact{background:linear-gradient(135deg,#a8c090 0%,#4a7c2d 100%);color:white;border-radius:15px;padding:2rem 1rem;}
+        .contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.2rem;}
+        .contact-item{background:rgba(255,255,255,0.15);padding:1.3rem 1rem;border-radius:10px;}
+        .notice{background:rgba(255,255,255,0.23);padding:1.3rem;border-radius:10px;margin-top:2rem;text-align:center;font-weight:500;}
+        footer{background:#2d5016;color:white;padding:2rem 1vw;text-align:center;width:100vw;margin-left:50%;transform:translateX(-50%);}
+        .social-links{margin-top:1rem;}
+        .social-links a{color:white;text-decoration:none;margin:0 1rem;}
+        .social-links a:hover{opacity:0.7;}
+        @media (max-width:900px){
+            .about-container{flex-direction:column;text-align:center;}
+            .about-img img{margin-bottom:1rem;}
+            .opening-hours-content{flex-direction:column;align-items:center;gap:0.7rem;}
+            .hour-day{width:95vw;padding:1.3rem 0.5rem;}
             .product-tooltip {
-                display: none !important;
+                left:50%;
+                top:105%;
+                transform:translate(-50%,0);
+                width:90vw;
+                max-width:350px;
+                pointer-events:auto;
             }
         }
-
-        @media (max-width: 380px) {
-            .logo {
-                font-size: 1rem;
-            }
-
-            .hero h1 {
-                font-size: 1.5rem;
-            }
-
-            .contact-item {
-                padding: 1rem 0.8rem;
-            }
+        @media (max-width:800px){.product-details{grid-template-columns:1fr;}}
+        @media (max-width:600px){
+            .hero{padding:2rem 0;}
+            .about-img img{width:110px;height:110px;}
+            .opening-hours-content{padding:1.4rem 0;gap:0.4rem;}
+        }
+        @media (max-width:768px){
+            body{padding-top:60px;}
+            nav{padding:0.8rem 2vw;}
+            .nav-links{position:fixed;left:-100vw;top:60px;flex-direction:column;background:#fff;width:100vw;transition:0.3s;box-shadow:0 10px 27px rgba(0,0,0,0.15);z-index:1002;gap:0;}
+            .nav-links li{width:100%;padding:0.5rem;}
+            .nav-links a{padding:1rem;width:100%;}
+            .nav-links.active{left:0;}
+            .hamburger{display:flex;}
+            .opening-hours-content{gap:0.6rem;}
+            .gallery-grid{grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:1rem;}
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <nav>
-            <div class="logo">🌱 Priesady Peter a Iveta</div>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="#domov">Domov</a></li>
-                <li><a href="#produkty">Produkty</a></li>
-                <li><a href="#galeria">Galéria</a></li>
-                <li><a href="#onas">O nás</a></li>
-                <li><a href="#kontakt">Kontakt</a></li>
-            </ul>
-            <div class="hamburger" id="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </nav>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="hero" id="domov">
-        <h1>Priesady Peter a Iveta</h1>
-        <p>Pestovaniu zeleninových priesad a byliniek sa venujeme už vyše 30 rokov</p>
-        <div class="season">🌸 Sezóna 2025 otvorená 🌸</div>
-        <div class="cta-buttons">
-            <a href="https://docs.google.com/spreadsheets/d/1HTwtNnTnk6LsmR_41G8cXXkM19rPj8e32Xt6GB9nqyA/edit?pli=1" target="_blank" class="cta-button">📋 Aktuálny cenník</a>
-            <a href="#kontakt" class="cta-button secondary">Kontaktujte nás</a>
+<header>
+    <nav>
+        <div class="logo">🌱 Priesady Peter a Iveta</div>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#domov">Domov</a></li>
+            <li><a href="#produkty">Produkty</a></li>
+            <li><a href="#galeria">Galéria</a></li>
+            <li><a href="#onas">O nás</a></li>
+            <li><a href="#kontakt">Kontakt</a></li>
+        </ul>
+        <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+    </nav>
+</header>
+<section class="hero" id="domov">
+    <h1>Priesady Peter a Iveta</h1>
+    <p>Pestovaniu zeleninových priesad a byliniek sa venujeme už vyše 30 rokov</p>
+    <div class="season">🌸 Sezóna 2025 otvorená 🌸</div>
+    <div class="cta-buttons">
+        <a href="https://docs.google.com/spreadsheets/d/1HTwtNnTnk6LsmR_41G8cXXkM19rPj8e32Xt6GB9nqyA/edit?pli=1" target="_blank" class="cta-button">📋 Aktuálny cenník</a>
+        <a href="#kontakt" class="cta-button secondary">Kontaktujte nás</a>
+    </div>
+</section>
+<div class="opening-hours">
+    <h2>⏰ Otváracie hodiny</h2>
+    <div class="opening-hours-content">
+        <div class="hour-day">
+            <strong>Pondelok – Piatok</strong>
+            16:00 &ndash; 18:00
         </div>
-    </section>
-
-    <!-- Opening Hours -->
-    <div class="opening-hours">
-        <h2>⏰ Otváracie hodiny</h2>
-        <div class="hours-grid">
-            <div class="hour-item">
-                <strong>Pondelok - Piatok</strong>
-                16:00 - 18:00
+        <div class="hour-day">
+            <strong>Sobota</strong>
+            14:00 &ndash; 15:00
+        </div>
+        <div class="hour-day closed">
+            <strong>Nedeľa</strong>
+            Zatvorené
+        </div>
+    </div>
+</div>
+<section id="produkty">
+<h2>Naše produkty</h2>
+<div class="product-categories" id="categoryView">
+    <div class="category-card" onclick="document.getElementById('papriky-group').scrollIntoView({behavior:'smooth',block:'start'});">
+        <div class="category-icon">🌶️</div>
+        <h3>Papriky</h3>
+        <p>Sladké, štipľavé a chilli odrody</p>
+    </div>
+    <div class="category-card" onclick="document.getElementById('rajciny-group').scrollIntoView({behavior:'smooth',block:'start'});">
+        <div class="category-icon">🍅</div>
+        <h3>Rajčiny</h3>
+        <p>Klasické a cherry odrody</p>
+    </div>
+    <div class="category-card" onclick="document.getElementById('bylinky-group').scrollIntoView({behavior:'smooth',block:'start'});">
+        <div class="category-icon">🌿</div>
+        <h3>Bylinky</h3>
+        <p>Čerstvé bylinky rôznych druhov</p>
+    </div>
+    <div class="category-card" onclick="document.getElementById('ostatne-group').scrollIntoView({behavior:'smooth',block:'start'});">
+        <div class="category-icon">🥒</div>
+        <h3>Ostatné priesady</h3>
+        <p>Uhorky, kaleráby a viac</p>
+    </div>
+</div>
+<div class="product-details">
+    <div class="product-group" id="papriky-group">
+        <h3>🌶️ Papriky</h3>
+        <ul class="product-list">
+            <li class="with-image">Slovakia<span class="product-tooltip"><img src="https://via.placeholder.com/200x200/4a7c2d/ffffff?text=Slovakia" alt="Slovakia"><span class="product-tooltip-name">Slovakia</span></span></li>
+            <li class="with-image">Andrea<span class="product-tooltip"><img src="https://via.placeholder.com/200x200/4a7c2d/ffffff?text=Andrea" alt="Andrea"><span class="product-tooltip-name">Andrea</span></span></li>
+            <li class="with-image">Amy<span class="product-tooltip"><img src="https://via.placeholder.com/200x200/4a7c2d/ffffff?text=Amy" alt="Amy"><span class="product-tooltip-name">Amy</span></span></li>
+            <li class="with-image">Amyka<span class="product-tooltip"><img src="https://via.placeholder.com/200x200/4a7c2d/ffffff?text=Amyka" alt="Amyka"><span class="product-tooltip-name">Amyka</span></span></li>
+            <li class="with-image">Kápia Rubínová<span class="product-tooltip"><img src="https://via.placeholder.com/200x200/4a7c2d/ffffff?text=Kapia+Rubinova" alt="Kápia Rubínová"><span class="product-tooltip-name">Kápia Rubínová</span></span></li>
+            <li class="with-image">Promontor F1<span class="product-tooltip"><img src="https://via.placeholder.com/200x200/4a7c2d/ffffff?text=Promontor+F1" alt="Promontor F1"><span class="product-tooltip-name">Promontor F1</span></span></li>
+            <li class="with-image">Cynthia F1<span class="product-tooltip"><img src="https://via.placeholder.com/200x200/4a7c2d/ffffff?text=Cynthia+F1" alt="Cynthia F1"><span class="product-tooltip-name">Cynthia F1</span></span></li>
+            <li class="with-image">Baraní roh sladký<span class="product-tooltip"><img src="https://via.placeholder.com/200x200/4a7c2d/ffffff?text=Barani+roh+sladky" alt="Baraní roh sladký"><span class="product-tooltip-name">Baraní roh sladký</span></span></li>
+            <li class="with-image">Nova<span class="product-tooltip"><img src="https://via.placeholder.com/200x200/4a7c2d/ffffff?text=Nova" alt="Nova"><span class="product-tooltip-name">Nova</span></span></li>
+            <li class="with-image">Kvadry F1<span class="product-tooltip"><img src="https://via.placeholder.com/200x200/4a7c2d/ffffff?text=Kvadry+F1" alt="Kvadry F1"><span class="product-tooltip-name">Kvadry F1</span></span></li>
+            <li class="with-image">Anthea<span class="product-tooltip"><img src="https://via.placeholder.com/200x200/4a7c2d/ffffff?text=Anthea" alt="Anthea"><span class="product-tooltip-name">Anthea</span></span></li>
+            <li class="with-image">PCR<span class="product-tooltip"><img src="https://via.placeholder.com/200x200/4a7c2d/ffffff?text=PCR" alt="PCR"><span class="product-tooltip-name">PCR</span></span></li>
+            <li class="with-image">Garam F1<span class="product-tooltip"><img src="https://via.placeholder.com/200x200/4a7c2d/ffffff?text=Garam+F1" alt="Garam F1"><span class="product-tooltip-name">Garam F1</span></span></li>
+            <li class="with-image">Feferónka Koral<span class="product-tooltip"><img src="https://via.placeholder.com/200x200/4a7c2d/ffffff?text=Feferonka+Koral" alt="Feferónka Koral"><span class="product-tooltip-name">Feferónka Koral</span></span></li>
+            <li class="with-image">Baraní roh<span class="product-tooltip"><img src="https://via.placeholder.com/200x200/4a7c2d/ffffff?text=Barani+roh" alt="Baraní roh"><span class="product-tooltip-name">Baraní roh</span></span></li>
+            <li class="with-image">Alma jabĺčková<span class="product-tooltip"><img src="https://via.placeholder.com/200x200/4a7c2d/ffffff?text=Alma+jablckova" alt="Alma jabĺčková"><span class="product-tooltip-name">Alma jabĺčková</span></span></li>
+            <li class="with-image">Kvetináčová<span class="product-tooltip"><img src="https://via.placeholder.com/200x200/4a7c2d/ffffff?text=Kvetinacova" alt="Kvetináčová"><span class="product-tooltip-name">Kvetináčová</span></span></li>
+            <li class="with-image">Kristián<span class="product-tooltip"><img src="https://via.placeholder.com/200x200/4a7c2d/ffffff?text=Kristian" alt="Kristián"><span class="product-tooltip-name">Kristián</span></span></li>
+            <li class="with-image">Damián<span class="product-tooltip"><img src="https://via.placeholder.com/200x200/4a7c2d/ffffff?text=Damian" alt="Damián"><span class="product-tooltip-name">Damián</span></span></li>
+            <li class="with-image">Jalapeňo<span class="product-tooltip"><img src="https://via.placeholder.com/200x200/4a7c2d/ffffff?text=Jalapeno" alt="Jalapeňo"><span class="product-tooltip-name">Jalapeňo</span></span></li>
+            <li class="with-image">Carolina Reaper<span class="product-tooltip"><img src="https://via.placeholder.com/200x200/4a7c2d/ffffff?text=Carolina+Reaper" alt="Carolina Reaper"><span class="product-tooltip-name">Carolina Reaper</span></span></li>
+            <li class="with-image">Habanero Red<span class="product-tooltip"><img src="https://via.placeholder.com/200x200/4a7c2d/ffffff?text=Habanero+Red" alt="Habanero Red"><span class="product-tooltip-name">Habanero Red</span></span></li>
+        </ul>
+    </div>
+    <div class="product-group" id="rajciny-group">
+        <h3>🍅 Rajčiny</h3>
+        <ul class="product-list">
+            <li class="with-image">Tornádo F1<span class="product-tooltip"><img src="https://via.placeholder.com/200x200/4a7c2d/ffffff?text=Tornado+F1" alt="Tornádo F1"><span class="product-tooltip-name">Tornádo F1</span></span></li>
+            <li class="with-image">Tipo F1<span class="product-tooltip"><img src="https://via.placeholder.com/200x200/4a7c2d/ffffff?text=Tipo+F1" alt="Tipo F1"><span class="product-tooltip-name">Tipo F1</span></span></li>
+            <li class="with-image">Cristal<span class="product-tooltip"><img src="https://via.placeholder.com/200x200/4a7c2d/ffffff?text=Cristal" alt="Cristal"><span class="product-tooltip-name">Cristal</span></span></li>
+            <li class="with-image">Herodes Býčie srdce<span class="product-tooltip"><img src="https://via.placeholder.com/200x200/4a7c2d/ffffff?text=Herodes" alt="Herodes Býčie srdce"><span class="product-tooltip-name">Herodes Býčie srdce</span></span></li>
+            <li class="with-image">Salus<span class="product-tooltip"><img src="https://via.placeholder.com/200x200/4a7c2d/ffffff?text=Salus" alt="Salus"><span class="product-tooltip-name">Salus</span></span></li>
+            <li class="with-image">San Marzano<span class="product-tooltip"><img src="https://via.placeholder.com/200x200/4a7c2d/ffffff?text=San+Marzano" alt="San Marzano"><span class="product-tooltip-name">San Marzano</span></span></li>
+            <li class="with-image">Čierne rajčiny<span class="product-tooltip"><img src="https://via.placeholder.com/200x200/4a7c2d/ffffff?text=Cierne+rajciny" alt="Čierne rajčiny"><span class="product-tooltip-name">Čierne rajčiny</span></span></li>
+            <li class="with-image">Orkádo<span class="product-tooltip"><img src="https://via.placeholder.com/200x200/4a7c2d/ffffff?text=Orkado" alt="Orkádo"><span class="product-tooltip-name">Orkádo</span></span></li>
+            <li class="with-image">Start<span class="product-tooltip"><img src="https://via.placeholder.com/200x200/4a7c2d/ffffff?text=Start" alt="Start"><span class="product-tooltip-name">Start</span></span></li>
+            <li class="with-image">Tomanova<span class="product-tooltip"><img src="https://via.placeholder.com/200x200/4a7c2d/ffffff?text=Tomanova" alt="Tomanova"><span class="product-tooltip-name">Tomanova</span></span></li>
+            <li class="with-image">Imunky<span class="product-tooltip"><img src="https://via.placeholder.com/200x200/4a7c2d/ffffff?text=Imunky" alt="Imunky"><span class="product-tooltip-name">Imunky</span></span></li>
+            <li class="with-image">Enygma<span class="product-tooltip"><img src="https://via.placeholder.com/200x200/4a7c2d/ffffff?text=Enygma" alt="Enygma"><span class="product-tooltip-name">Enygma</span></span></li>
+            <li class="with-image">Homestead<span class="product-tooltip"><img src="https://via.placeholder.com/200x200/4a7c2d/ffffff?text=Homestead" alt="Homestead"><span class="product-tooltip-name">Homestead</span></span></li>
+            <li class="with-image">Oxeheart<span class="product-tooltip"><img src="https://via.placeholder.com/200x200/4a7c2d/ffffff?text=Oxeheart" alt="Oxeheart"><span class="product-tooltip-name">Oxeheart</span></span></li>
+            <li class="with-image">Yellowstone<span class="product-tooltip"><img src="https://via.placeholder.com/200x200/4a7c2d/ffffff?text=Yellowstone" alt="Yellowstone"><span class="product-tooltip-name">Yellowstone</span></span></li>
+            <li class="with-image">Indigo Rose<span class="product-tooltip"><img src="https://via.placeholder.com/200x200/4a7c2d/ffffff?text=Indigo+Rose" alt="Indigo Rose"><span class="product-tooltip-name">Indigo Rose</span></span></li>
+            <li class="with-image">Niki Zel F1<span class="product-tooltip"><img src="https://via.placeholder.com/200x200/4a7c2d/ffffff?text=Niki+Zel+F1" alt="Niki Zel F1"><span class="product-tooltip-name">Niki Zel F1</span></span></li>
+            <li class="with-image">Zomok<span class="product-tooltip"><img src="https://via.placeholder.com/200x200/4a7c2d/ffffff?text=Zomok" alt="Zomok"><span class="product-tooltip-name">Zomok</span></span></li>
+            <li class="with-image">Mano<span class="product-tooltip"><img src="https://via.placeholder.com/200x200/4a7c2d/ffffff?text=Mano" alt="Mano"><span class="product-tooltip-name">Mano</span></span></li>
+            <li class="with-image">Jergus F1<span class="product-tooltip"><img src="https://via.placeholder.com/200x200/4a7c2d/ffffff?text=Jergus+F1" alt="Jergus F1"><span class="product-tooltip-name">Jergus F1</span></span></li>
+            <li class="with-image">Bejbino<span class="product-tooltip"><img src="https://via.placeholder.com/200x200/4a7c2d/ffffff?text=Bejbino" alt="Bejbino"><span class="product-tooltip-name">Bejbino</span></span></li>
+            <li class="with-image">Jahodo<span class="product-tooltip"><img src="https://via.placeholder.com/200x200/4a7c2d/ffffff?text=Jahodo" alt="Jahodo"><span class="product-tooltip-name">Jahodo</span></span></li>
+            <li class="with-image">Spencer<span class="product-tooltip"><img src="https://via.placeholder.com/200x200/4a7c2d/ffffff?text=Spencer" alt="Spencer"><span class="product-tooltip-name">Spencer</span></span></li>
+            <li class="with-image">Hruštičky červené Radana<span class="product-tooltip"><img src="https://via.placeholder.com/200x200/4a7c2d/ffffff?text=Hrusticky+cervene" alt="Hruštičky červené Radana"><span class="product-tooltip-name">Hruštičky červené Radana</span></span></li>
+            <li class="with-image">Hruštičky žlté Perun<span class="product-tooltip"><img src="https://via.placeholder.com/200x200/4a7c2d/ffffff?text=Hrusticky+zlte" alt="Hruštičky žlté Perun"><span class="product-tooltip-name">Hruštičky žlté Perun</span></span></li>
+            <li class="with-image">Vilma<span class="product-tooltip"><img src="https://via.placeholder.com/200x200/4a7c2d/ffffff?text=Vilma" alt="Vilma"><span class="product-tooltip-name">Vilma</span></span></li>
+            <li class="with-image">Goldkrone<span class="product-tooltip"><img src="https://via.placeholder.com/200x200/4a7c2d/ffffff?text=Goldkrone" alt="Goldkrone"><span class="product-tooltip-name">Goldkrone</span></span></li>
+            <li class="with-image">Cherry čierne<span class="product-tooltip"><img src="https://via.placeholder.com/200x200/4a7c2d/ffffff?text=Cherry+cierne" alt="Cherry čierne"><span class="product-tooltip-name">Cherry čierne</span></span></li>
+            <li class="with-image">Blackball<span class="product-tooltip"><img src="https://via.placeholder.com/200x200/4a7c2d/ffffff?text=Blackball" alt="Blackball"><span class="product-tooltip-name">Blackball</span></span></li>
+            <li class="with-image">Bajaja<span class="product-tooltip"><img src="https://via.placeholder.com/200x200/4a7c2d/ffffff?text=Bajaja" alt="Bajaja"><span class="product-tooltip-name">Bajaja</span></span></li>
+        </ul>
+    </div>
+    <div class="product-group" id="bylinky-group">
+        <h3>🌿 Bylinky</h3>
+        <ul class="product-list">
+            <li class="with-image">Mäta jahodová<span class="product-tooltip"><img src="https://via.placeholder.com/200x200/4a7c2d/ffffff?text=Mata+jahodova" alt="Mäta jahodová"><span class="product-tooltip-name">Mäta jahodová</span></span></li>
+            <li class="with-image">Mäta pepermintová<span class="product-tooltip"><img src="https://via.placeholder.com/200x200/4a7c2d/ffffff?text=Mata+pepermint" alt="Mäta pepermintová"><span class="product-tooltip-name">Mäta pepermintová</span></span></li>
+            <li class="with-image">Mäta jablková<span class="product-tooltip"><img src="https://via.placeholder.com/200x200/4a7c2d/ffffff?text=Mata+jablkova" alt="Mäta jablková"><span class="product-tooltip-name">Mäta jablková</span></span></li>
+            <li class="with-image">Mäta ananásová<span class="product-tooltip"><img src="https://via.placeholder.com/200x200/4a7c2d/ffffff?text=Mata+ananasova" alt="Mäta ananásová"><span class="product-tooltip-name">Mäta ananásová</span></span></li>
+            <li class="with-image">Medovka<span class="product-tooltip"><img src="https://via.placeholder.com/200x200/4a7c2d/ffffff?text=Medovka" alt="Medovka"><span class="product-tooltip-name">Medovka</span></span></li>
+            <li class="with-image">Oregáno<span class="product-tooltip"><img src="https://via.placeholder.com/200x200/4a7c2d/ffffff?text=Oregano" alt="Oregáno"><span class="product-tooltip-name">Oregáno</span></span></li>
+            <li class="with-image">Rozmarín<span class="product-tooltip"><img src="https://via.placeholder.com/200x200/4a7c2d/ffffff?text=Rozmarin" alt="Rozmarín"><span class="product-tooltip-name">Rozmarín</span></span></li>
+            <li class="with-image">Levanduľa<span class="product-tooltip"><img src="https://via.placeholder.com/200x200/4a7c2d/ffffff?text=Levandula" alt="Levanduľa"><span class="product-tooltip-name">Levanduľa</span></span></li>
+            <li class="with-image">Tymián<span class="product-tooltip"><img src="https://via.placeholder.com/200x200/4a7c2d/ffffff?text=Tymian" alt="Tymián"><span class="product-tooltip-name">Tymián</span></span></li>
+            <li class="with-image">Materina dúška<span class="product-tooltip"><img src="https://via.placeholder.com/200x200/4a7c2d/ffffff?text=Materina+duska" alt="Materina dúška"><span class="product-tooltip-name">Materina dúška</span></span></li>
+            <li class="with-image">Ligurček<span class="product-tooltip"><img src="https://via.placeholder.com/200x200/4a7c2d/ffffff?text=Ligurcek" alt="Ligurček"><span class="product-tooltip-name">Ligurček</span></span></li>
+            <li class="with-image">Petržlen<span class="product-tooltip"><img src="https://via.placeholder.com/200x200/4a7c2d/ffffff?text=Petrzlen" alt="Petržlen"><span class="product-tooltip-name">Petržlen</span></span></li>
+            <li class="with-image">Zeler vňaťový<span class="product-tooltip"><img src="https://via.placeholder.com/200x200/4a7c2d/ffffff?text=Zeler" alt="Zeler vňaťový"><span class="product-tooltip-name">Zeler vňaťový</span></span></li>
+            <li class="with-image">Pažítka<span class="product-tooltip"><img src="https://via.placeholder.com/200x200/4a7c2d/ffffff?text=Pazitka" alt="Pažítka"><span class="product-tooltip-name">Pažítka</span></span></li>
+            <li class="with-image">Šalvia lekárska<span class="product-tooltip"><img src="https://via.placeholder.com/200x200/4a7c2d/ffffff?text=Salvia" alt="Šalvia lekárska"><span class="product-tooltip-name">Šalvia lekárska</span></span></li>
+            <li class="with-image">Majoránka<span class="product-tooltip"><img src="https://via.placeholder.com/200x200/4a7c2d/ffffff?text=Majoranka" alt="Majoránka"><span class="product-tooltip-name">Majoránka</span></span></li>
+            <li class="with-image">Bazalka<span class="product-tooltip"><img src="https://via.placeholder.com/200x200/4a7c2d/ffffff?text=Bazalka" alt="Bazalka"><span class="product-tooltip-name">Bazalka</span></span></li>
+            <li class="with-image">Machovka<span class="product-tooltip"><img src="https://via.placeholder.com/200x200/4a7c2d/ffffff?text=Machovka" alt="Machovka"><span class="product-tooltip-name">Machovka</span></span></li>
+            <li class="with-image">Kôpor<span class="product-tooltip"><img src="https://via.placeholder.com/200x200/4a7c2d/ffffff?text=Kopor" alt="Kôpor"><span class="product-tooltip-name">Kôpor</span></span></li>
+            <li class="with-image">Koriander<span class="product-tooltip"><img src="https://via.placeholder.com/200x200/4a7c2d/ffffff?text=Koriander" alt="Koriander"><span class="product-tooltip-name">Koriander</span></span></li>
+        </ul>
+    </div>
+    <div class="product-group" id="ostatne-group">
+        <h3>🥒 Ostatné priesady</h3>
+        <ul class="product-list">
+            <li class="with-image">Uhorky<span class="product-tooltip"><img src="https://via.placeholder.com/200x200/4a7c2d/ffffff?text=Uhorky" alt="Uhorky"><span class="product-tooltip-name">Uhorky</span></span></li>
+            <li class="with-image">Kaleráby<span class="product-tooltip"><img src="https://via.placeholder.com/200x200/4a7c2d/ffffff?text=Kaleraby" alt="Kaleráby"><span class="product-tooltip-name">Kaleráby</span></span></li>
+            <li class="with-image">Kel ružičkový<span class="product-tooltip"><img src="https://via.placeholder.com/200x200/4a7c2d/ffffff?text=Kel+ruzickovy" alt="Kel ružičkový"><span class="product-tooltip-name">Kel ružičkový</span></span></li>
+            <li class="with-image">Karfiol<span class="product-tooltip"><img src="https://via.placeholder.com/200x200/4a7c2d/ffffff?text=Karfiol" alt="Karfiol"><span class="product-tooltip-name">Karfiol</span></span></li>
+            <li class="with-image">Brokolica<span class="product-tooltip"><img src="https://via.placeholder.com/200x200/4a7c2d/ffffff?text=Brokolica" alt="Brokolica"><span class="product-tooltip-name">Brokolica</span></span></li>
+            <li class="with-image">Kapusta<span class="product-tooltip"><img src="https://via.placeholder.com/200x200/4a7c2d/ffffff?text=Kapusta" alt="Kapusta"><span class="product-tooltip-name">Kapusta</span></span></li>
+            <li class="with-image">Zeler<span class="product-tooltip"><img src="https://via.placeholder.com/200x200/4a7c2d/ffffff?text=Zeler" alt="Zeler"><span class="product-tooltip-name">Zeler</span></span></li>
+            <li class="with-image">Cuketa<span class="product-tooltip"><img src="https://via.placeholder.com/200x200/4a7c2d/ffffff?text=Cuketa" alt="Cuketa"><span class="product-tooltip-name">Cuketa</span></span></li>
+            <li class="with-image">Tekvice<span class="product-tooltip"><img src="https://via.placeholder.com/200x200/4a7c2d/ffffff?text=Tekvice" alt="Tekvice"><span class="product-tooltip-name">Tekvice</span></span></li>
+            <li class="with-image">Pór<span class="product-tooltip"><img src="https://via.placeholder.com/200x200/4a7c2d/ffffff?text=Por" alt="Pór"><span class="product-tooltip-name">Pór</span></span></li>
+            <li class="with-image">Baklažán<span class="product-tooltip"><img src="https://via.placeholder.com/200x200/4a7c2d/ffffff?text=Baklazan" alt="Baklažán"><span class="product-tooltip-name">Baklažán</span></span></li>
+            <li class="with-image">Melón<span class="product-tooltip"><img src="https://via.placeholder.com/200x200/4a7c2d/ffffff?text=Melon" alt="Melón"><span class="product-tooltip-name">Melón</span></span></li>
+            <li class="with-image">Jahody<span class="product-tooltip"><img src="https://via.placeholder.com/200x200/4a7c2d/ffffff?text=Jahody" alt="Jahody"><span class="product-tooltip-name">Jahody</span></span></li>
+        </ul>
+    </div>
+</div>
+</section>
+<!-- Galéria Section -->
+<section id="galeria">
+    <h2>Galéria z pestovania</h2>
+    <div class="gallery">
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="https://via.placeholder.com/400x400/2d5016/ffffff?text=Sadíme+papriky" alt="Sadenie paprík">
+                <div class="gallery-item-overlay">Sadenie paprík - jar</div>
             </div>
-            <div class="hour-item">
-                <strong>Sobota</strong>
-                14:00 - 15:00
+            <div class="gallery-item">
+                <img src="https://via.placeholder.com/400x400/4a7c2d/ffffff?text=Skleník+rajčiny" alt="Skleník rajčiny">
+                <div class="gallery-item-overlay">Rajčiny v skleníku</div>
             </div>
-            <div class="hour-item">
-                <strong>Nedeľa</strong>
-                Zatvorené
+            <div class="gallery-item">
+                <img src="https://via.placeholder.com/400x400/a8c090/333333?text=Štipľavé+chilli" alt="Chilli pestovanie">
+                <div class="gallery-item-overlay">Zber chilli</div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://via.placeholder.com/400x400/2d5016/ffffff?text=Bylinky" alt="Bylinky">
+                <div class="gallery-item-overlay">Bylinky vo fóliovníku</div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://via.placeholder.com/400x400/4a7c2d/ffffff?text=Ovocie+%26+zelenina" alt="Ovocie a zelenina">
+                <div class="gallery-item-overlay">Letná úroda</div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://via.placeholder.com/400x400/a8c090/333333?text=Trhový+stánok" alt="Predaj na tržnici">
+                <div class="gallery-item-overlay">Predaj na tržnici</div>
             </div>
         </div>
     </div>
-
-    <!-- Products Section -->
-    <section id="produkty">
-        <h2>Naše produkty</h2>
-        
-        <!-- Kategórie - Klikacia verzia -->
-        <div class="product-categories" id="categoryView">
-            <a href="#papriky-detail" class="category-card" data-category="papriky">
-                <div class="category-icon">🌶️</div>
-                <h3>Papriky</h3>
-                <p>Sladké, štipľavé a chilli odrody</p>
-                <div class="arrow">Zobraziť odrody →</div>
-            </a>
-            <a href="#rajciny-detail" class="category-card" data-category="rajciny">
-                <div class="category-icon">🍅</div>
-                <h3>Rajčiny</h3>
-                <p>Klasické a cherry odrody</p>
-                <div class="arrow">Zobraziť odrody →</div>
-            </a>
-            <a href="#bylinky-detail" class="category-card" data-category="bylinky">
-                <div class="category-icon">🌿</div>
-                <h3>Bylinky</h3>
-                <p>Čerstvé bylinky rôznych druhov</p>
-                <div class="arrow">Zobraziť odrody →</div>
-            </a>
-            <a href="#ostatne-detail" class="category-card" data-category="ostatne">
-                <div class="category-icon">🥒</div>
-                <h3>Ostatné priesady</h3>
-                <p>Uhorky, kaleráby a viac</p>
-                <div class="arrow">Zobraziť odrody →</div>
-            </a>
+</section>
+<!-- O nás Section -->
+<section id="onas">
+    <h2>O nás</h2>
+    <div class="about-container">
+        <div class="about-img">
+            <!-- Tu môžete nahradiť vlastnou fotkou -->
+            <img src="https://via.placeholder.com/150x150/4a7c2d/ffffff?text=Naša+Rodina" alt="Naša rodina">
         </div>
-
-        <!-- Detail papriky -->
-        <div class="product-details" id="papriky-detail">
-            <a href="#produkty" class="back-button">← Späť na kategórie</a>
-            <div class="product-group">
-                <h3>🌶️ Papriky</h3>
-                
-                <h4>Sladké:</h4>
-                <ul class="product-list">
-                    <li>Slovakia
-                        <div class="product-tooltip">
-                            <img src="https://via.placeholder.com/200x200/4a7c2d/ffffff?text=Slovakia" alt="Slovakia">
-                            <div class="product-tooltip-name">Slovakia</div>
-                        </div>
-                    </li>
-                    <li>Andrea
-                        <div class="product-tooltip">
-                            <img src="https://via.placeholder.com/200x200/4a7c2d/ffffff?text=Andrea" alt="Andrea">
-                            <div class="product-tooltip-name">Andrea</div>
-                        </div>
-                    </li>
-                    <li>Amy</li>
-                    <li>Amyka</li>
-                    <li>Kápia Rubínová</li>
-                    <li>Promontor F1</li>
-                    <li>Cynthia F1</li>
-                    <li>Baraní roh sladký</li>
-                    <li>Nova</li>
-                    <li>Kvadry F1</li>
-                </ul>
-
-                <h4>Štipľavé:</h4>
-                <ul class="product-list">
-                    <li>Anthea</li>
-                    <li>PCR</li>
-                    <li>Garam F1</li>
-                    <li>Feferónka Koral</li>
-                    <li>Baraní roh</li>
-                    <li>Alma jabĺčková</li>
-                </ul>
-
-                <h4>Chilli:</h4>
-                <ul class="product-list">
-                    <li>Kvetináčová</li>
-                    <li>Kristián</li>
-                    <li>Damián</li>
-                    <li>Jalapeňo</li>
-                    <li>Carolina Reaper</li>
-                    <li>Habanero Red</li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- Detail rajčiny -->
-        <div class="product-details" id="rajciny-detail">
-            <a href="#produkty" class="back-button">← Späť na kategórie</a>
-            <div class="product-group">
-                <h3>🍅 Rajčiny</h3>
-                
-                <h4>Klasické:</h4>
-                <ul class="product-list">
-                    <li>Tornádo F1
-                        <div class="product-tooltip">
-                            <img src="https://via.placeholder.com/200x200/d32f2f/ffffff?text=Tornado" alt="Tornádo F1">
-                            <div class="product-tooltip-name">Tornádo F1</div>
-                        </div>
-                    </li>
-                    <li>Tipo F1</li>
-                    <li>Cristal</li>
-                    <li>Herodes Býčie srdce</li>
-                    <li>Salus</li>
-                    <li>San Marzano</li>
-                    <li>Čierne rajčiny</li>
-                    <li>Orkádo</li>
-                    <li>Start</li>
-                    <li>Tomanova</li>
-                    <li>Imunky</li>
-                    <li>Enygma</li>
-                    <li>Homestead</li>
-                    <li>Oxeheart</li>
-                    <li>Yellowstone</li>
-                    <li>Indigo Rose</li>
-                    <li>Niki Zel F1</li>
-                    <li>Zomok</li>
-                    <li>Mano</li>
-                    <li>Jergus F1</li>
-                </ul>
-
-                <h4>Cherry:</h4>
-                <ul class="product-list">
-                    <li>Bejbino
-                        <div class="product-tooltip">
-                            <img src="https://via.placeholder.com/200x200/d32f2f/ffffff?text=Bejbino" alt="Bejbino">
-                            <div class="product-tooltip-name">Bejbino</div>
-                        </div>
-                    </li>
-                    <li>Jahodo</li>
-                    <li>Spencer</li>
-                    <li>Hruštičky červené Radana</li>
-                    <li>Hruštičky žlté Perun</li>
-                    <li>Vilma</li>
-                    <li>Goldkrone</li>
-                    <li>Cherry čierne</li>
-                    <li>Blackball</li>
-                    <li>Bajaja</li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- Detail bylinky -->
-        <div class="product-details" id="bylinky-detail">
-            <a href="#produkty" class="back-button">← Späť na kategórie</a>
-            <div class="product-group">
-                <h3>🌿 Bylinky</h3>
-                <ul class="product-list">
-                    <li>Mäta jahodová</li>
-                    <li>Mäta pepermintová</li>
-                    <li>Mäta jablková</li>
-                    <li>Mäta ananásová</li>
-                    <li>Medovka</li>
-                    <li>Oregáno</li>
-                    <li>Rozmarín</li>
-                    <li>Levanduľa</li>
-                    <li>Tymián</li>
-                    <li>Materina dúška</li>
-                    <li>Ligurček</li>
-                    <li>Petržlen</li>
-                    <li>Zeler vňaťový</li>
-                    <li>Pažítka</li>
-                    <li>Šalvia lekárska</li>
-                    <li>Majoránka</li>
-                    <li>Bazalka</li>
-                    <li>Machovka</li>
-                    <li>Kôpor</li>
-                    <li>Koriander</li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- Detail ostatné -->
-        <div class="product-details" id="ostatne-detail">
-            <a href="#produkty" class="back-button">← Späť na kategórie</a>
-            <div class="product-group">
-                <h3>🥒 Ostatné priesady</h3>
-                <ul class="product-list">
-                    <li>Uhorky</li>
-                    <li>Kaleráby</li>
-                    <li>Kel ružičkový</li>
-                    <li>Karfiol</li>
-                    <li>Brokolica</li>
-                    <li>Kapusta</li>
-                    <li>Zeler</li>
-                    <li>Cuketa</li>
-                    <li>Tekvice</li>
-                    <li>Pór</li>
-                    <li>Baklažán</li>
-                    <li>Melón</li>
-                    <li>Jahody</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <!-- Galéria Section -->
-
-    <!-- Galéria Section -->
-    <section id="galeria">
-        <h2>Galéria z pestovania</h2>
-        <div class="gallery">
-            <div class="gallery-grid">
-                <div class="gallery-item">
-                    <img src="https://via.placeholder.com/400x400/2d5016/ffffff?text=Sadíme+papriky" alt="Sadenie paprík">
-                    <div class="gallery-item-overlay">Sadenie paprík - jar</div>
-                </div>
-                <div class="gallery-item">
-                    <img src="https://via.placeholder.com/400x400/4a7c2d/ffffff?text=Skleník+rajčiny" alt="Skleník rajčiny">
-                    <div class="gallery-item-overlay">Rajčiny v skleníku</div>
-                </div>
-                <div class="gallery-item">
-                    <img src="https://via.placeholder.com/400x400/a8c090/333333?text=Štipľavé+chilli" alt="Chilli pestovanie">
-                    <div class="gallery-item-overlay">Zber chilli</div>
-                </div>
-                <div class="gallery-item">
-                    <img src="https://via.placeholder.com/400x400/2d5016/ffffff?text=Bylinky" alt="Pestovanie byliniek">
-                    <div class="gallery-item-overlay">Bylinky vo fóliovníku</div>
-                </div>
-                <div class="gallery-item">
-                    <img src="https://via.placeholder.com/400x400/4a7c2d/ffffff?text=Ovocie+%26+zelenina" alt="Ovocie a zelenina">
-                    <div class="gallery-item-overlay">Letná úroda</div>
-                </div>
-                <div class="gallery-item">
-                    <img src="https://via.placeholder.com/400x400/a8c090/333333?text=Trhový+stánok" alt="Predaj na tržnici">
-                    <div class="gallery-item-overlay">Predaj na tržnici</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="onas">
-        <h2>O nás</h2>
-        <div class="about">
+        <div class="about-text about">
             <p>
                 Pestovaniu priesad paprík, rajčín a bylín sa venujeme už od roku 1992. 
                 Za tie roky sme získali veľa skúseností. Každý rok pestujeme priesady s láskou a úsmevom. 
@@ -963,85 +390,91 @@
                 domáce ovocie a zeleninu, ktorú dopestujeme.
             </p>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Contact Section -->
-    <section id="kontakt">
-        <div class="contact">
-            <h2>Kontakt</h2>
-            <div class="contact-grid">
-                <div class="contact-item">
-                    <h3>📍 Adresa</h3>
-                    <p>Hlavná 2<br>Nitra-Janíkovce<br>949 07</p>
-                </div>
-                <div class="contact-item">
-                    <h3>📞 Telefón</h3>
-                    <p><a href="tel:+421905679435">0905 679 435</a></p>
-                </div>
-                <div class="contact-item">
-                    <h3>✉️ Email</h3>
-                    <p><a href="mailto:galovaivanitra@gmail.com">galovaivanitra@gmail.com</a></p>
-                </div>
-                <div class="contact-item">
-                    <h3>👍 Facebook</h3>
-                    <p><a href="https://www.facebook.com/sadenicepeteraiveta.sk" target="_blank">facebook.com/sadenicepeteraiveta.sk</a></p>
-                </div>
+<!-- Kontakt Section -->
+<section id="kontakt">
+    <div class="contact">
+        <h2>Kontakt</h2>
+        <div class="contact-grid">
+            <div class="contact-item">
+                <h3>📍 Adresa</h3>
+                <p>Hlavná 2<br>Nitra-Janíkovce<br>949 07</p>
             </div>
-            <div class="notice">
-                ⚠️ Priesady predávame osobným odberom u nás. Kuriérom neposielame.
+            <div class="contact-item">
+                <h3>📞 Telefón</h3>
+                <p><a href="tel:+421905679435" style="color:white;text-decoration:underline;">0905 679 435</a></p>
+            </div>
+            <div class="contact-item">
+                <h3>✉️ Email</h3>
+                <p><a href="mailto:galovaivanitra@gmail.com" style="color:white;text-decoration:underline;">galovaivanitra@gmail.com</a></p>
+            </div>
+            <div class="contact-item">
+                <h3>👍 Facebook</h3>
+                <p><a href="https://www.facebook.com/sadenicepeteraiveta.sk" target="_blank" style="color:white;text-decoration:underline;">facebook.com/sadenicepeteraiveta.sk</a></p>
             </div>
         </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2025 Priesady Peter a Iveta. Všetky práva vyhradené.</p>
-        <div class="social-links">
-            <a href="https://www.facebook.com/sadenicepeteraiveta.sk" target="_blank">📘 Facebook</a>
+        <div class="notice">
+            ⚠️ Priesady predávame osobným odberom u nás. Kuriérom neposielame.
         </div>
-    </footer>
+    </div>
+</section>
+<footer>
+    <p>&copy; 2025 Priesady Peter a Iveta. Všetky práva vyhradené.</p>
+    <div class="social-links">
+        <a href="https://www.facebook.com/sadenicepeteraiveta.sk" target="_blank">📘 Facebook</a>
+    </div>
+</footer>
 
-    <script>
-        // Hamburger menu toggle
-        const hamburger = document.getElementById('hamburger');
-        const navLinks = document.getElementById('navLinks');
-        hamburger.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
+<script>
+    // Hamburger menu toggle
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+    
+    hamburger.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+    });
+    
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            navLinks.classList.remove('active');
         });
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
+    });
+    
+    document.addEventListener('click', function (e) {
+        if (!hamburger.contains(e.target) && !navLinks.contains(e.target)) {
+            navLinks.classList.remove('active');
+        }
+    });
+
+    // Tooltip pre obrázky na mobile - kliknutie
+    function isTouchDevice() {
+        return (('ontouchstart' in window) || (navigator.maxTouchPoints > 0));
+    }
+
+    if (isTouchDevice()) {
+        document.querySelectorAll('.with-image').forEach(function(li){
+            li.addEventListener('click', function(e){
+                // Zruš všetky predchádzajúce tooltipy (okrem aktuálneho)
+                document.querySelectorAll('.with-image').forEach(function(other){
+                    if(other !== li) other.classList.remove('show-tooltip');
+                });
+                // Prepni zobrazenie tooltipu
+                li.classList.toggle('show-tooltip');
+                e.stopPropagation();
             });
         });
-        document.addEventListener('click', function (e) {
-            if (!hamburger.contains(e.target) && !navLinks.contains(e.target)) {
-                navLinks.classList.remove('active');
+        
+        // Skry všetky tooltipy pri kliknutí mimo
+        document.body.addEventListener('click', function(e) {
+            if (!e.target.closest('.with-image')) {
+                document.querySelectorAll('.with-image').forEach(function(li){
+                    li.classList.remove('show-tooltip');
+                });
             }
         });
-
-        // Interaktívne prepínanie kategórií produktov
-        document.querySelectorAll('.category-card').forEach(card => {
-            card.addEventListener('click', function (e) {
-                e.preventDefault();
-                // Skryť všetky detailné sekcie
-                document.querySelectorAll('.product-details').forEach(pd => pd.classList.remove('active'));
-                // Zobraziť konkrétnu sekciu
-                var detailId = card.dataset.category + '-detail';
-                document.getElementById(detailId).classList.add('active');
-                // Prescroll na detail
-                setTimeout(function(){
-                    document.getElementById(detailId).scrollIntoView({behavior: 'smooth', block: 'start'});
-                }, 50);
-            });
-        });
-        // Späť na kategórie
-        document.querySelectorAll('.back-button').forEach(btn => {
-            btn.addEventListener('click', function(e){
-                e.preventDefault();
-                document.querySelectorAll('.product-details').forEach(pd => pd.classList.remove('active'));
-                document.getElementById('categoryView').scrollIntoView({behavior: 'smooth', block: 'start'});
-            });
-        });
-    </script>
+    }
+</script>
 </body>
 </html>
