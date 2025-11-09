@@ -917,5 +917,131 @@
     </section>
 
     <!-- Galéria Section -->
+
+    <!-- Galéria Section -->
     <section id="galeria">
-        <h2>
+        <h2>Galéria z pestovania</h2>
+        <div class="gallery">
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="https://via.placeholder.com/400x400/2d5016/ffffff?text=Sadíme+papriky" alt="Sadenie paprík">
+                    <div class="gallery-item-overlay">Sadenie paprík - jar</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://via.placeholder.com/400x400/4a7c2d/ffffff?text=Skleník+rajčiny" alt="Skleník rajčiny">
+                    <div class="gallery-item-overlay">Rajčiny v skleníku</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://via.placeholder.com/400x400/a8c090/333333?text=Štipľavé+chilli" alt="Chilli pestovanie">
+                    <div class="gallery-item-overlay">Zber chilli</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://via.placeholder.com/400x400/2d5016/ffffff?text=Bylinky" alt="Pestovanie byliniek">
+                    <div class="gallery-item-overlay">Bylinky vo fóliovníku</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://via.placeholder.com/400x400/4a7c2d/ffffff?text=Ovocie+%26+zelenina" alt="Ovocie a zelenina">
+                    <div class="gallery-item-overlay">Letná úroda</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://via.placeholder.com/400x400/a8c090/333333?text=Trhový+stánok" alt="Predaj na tržnici">
+                    <div class="gallery-item-overlay">Predaj na tržnici</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="onas">
+        <h2>O nás</h2>
+        <div class="about">
+            <p>
+                Pestovaniu priesad paprík, rajčín a bylín sa venujeme už od roku 1992. 
+                Za tie roky sme získali veľa skúseností. Každý rok pestujeme priesady s láskou a úsmevom. 
+                V jarných mesiacoch sa venujeme najmä pestovaniu zeleninových a bylinných priesad. 
+                Počas leta a jesenných mesiacoch prinášame na stánok na tržnici LIPA v Nitre kvalitné 
+                domáce ovocie a zeleninu, ktorú dopestujeme.
+            </p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="kontakt">
+        <div class="contact">
+            <h2>Kontakt</h2>
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <h3>📍 Adresa</h3>
+                    <p>Hlavná 2<br>Nitra-Janíkovce<br>949 07</p>
+                </div>
+                <div class="contact-item">
+                    <h3>📞 Telefón</h3>
+                    <p><a href="tel:+421905679435">0905 679 435</a></p>
+                </div>
+                <div class="contact-item">
+                    <h3>✉️ Email</h3>
+                    <p><a href="mailto:galovaivanitra@gmail.com">galovaivanitra@gmail.com</a></p>
+                </div>
+                <div class="contact-item">
+                    <h3>👍 Facebook</h3>
+                    <p><a href="https://www.facebook.com/sadenicepeteraiveta.sk" target="_blank">facebook.com/sadenicepeteraiveta.sk</a></p>
+                </div>
+            </div>
+            <div class="notice">
+                ⚠️ Priesady predávame osobným odberom u nás. Kuriérom neposielame.
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Priesady Peter a Iveta. Všetky práva vyhradené.</p>
+        <div class="social-links">
+            <a href="https://www.facebook.com/sadenicepeteraiveta.sk" target="_blank">📘 Facebook</a>
+        </div>
+    </footer>
+
+    <script>
+        // Hamburger menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+        document.addEventListener('click', function (e) {
+            if (!hamburger.contains(e.target) && !navLinks.contains(e.target)) {
+                navLinks.classList.remove('active');
+            }
+        });
+
+        // Interaktívne prepínanie kategórií produktov
+        document.querySelectorAll('.category-card').forEach(card => {
+            card.addEventListener('click', function (e) {
+                e.preventDefault();
+                // Skryť všetky detailné sekcie
+                document.querySelectorAll('.product-details').forEach(pd => pd.classList.remove('active'));
+                // Zobraziť konkrétnu sekciu
+                var detailId = card.dataset.category + '-detail';
+                document.getElementById(detailId).classList.add('active');
+                // Prescroll na detail
+                setTimeout(function(){
+                    document.getElementById(detailId).scrollIntoView({behavior: 'smooth', block: 'start'});
+                }, 50);
+            });
+        });
+        // Späť na kategórie
+        document.querySelectorAll('.back-button').forEach(btn => {
+            btn.addEventListener('click', function(e){
+                e.preventDefault();
+                document.querySelectorAll('.product-details').forEach(pd => pd.classList.remove('active'));
+                document.getElementById('categoryView').scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+</body>
+</html>
