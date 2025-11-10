@@ -742,6 +742,14 @@
                 li.classList.toggle('show-tooltip');
                 e.stopPropagation();
             });
+        // Pridať event listener na tooltip samotný pre zatvorenie
+            const tooltip = li.querySelector('.product-tooltip');
+            if (tooltip) {
+                tooltip.addEventListener('click', function(e) {
+                    li.classList.remove('show-tooltip');
+                    e.stopPropagation();
+                });
+            }
         });
         
         // Skry všetky tooltipy pri kliknutí mimo
