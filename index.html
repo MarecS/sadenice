@@ -136,14 +136,7 @@
             letter-spacing:0.5px;
 
         }
-        .product-tooltip-desc {
-            display:block; 
-            font-size:0.95em; 
-            color:#333; 
-            margin-top:0.4em;
-            font-style:italic;
-            text-align:center;
-        }
+
         /* .hour-day.closed{opacity:0.6;} */
         .hour-day.closed p{color: rgb(255, 0, 0);}
         section{max-width:1200px;margin:0 auto;padding:2.5rem 1vw;width:100vw;}
@@ -163,20 +156,98 @@
         .product-list li:before{content:'🌱 ';margin-right:0.5rem;}
         /* Tooltip pre obrázky produktov */
         .with-image {position:relative;cursor:pointer;}
-        .product-tooltip {
-            display:none;
-            position:absolute;
-            left:105%;
-            top:50%;
-            transform:translateY(-50%);
-            z-index:100;
-            background:white;
-            border-radius:10px;
-            box-shadow:0 10px 30px rgba(0,0,0,0.27);
-            padding:0.5rem;
-            width:210px;
-            pointer-events:none;
-        }
+        /* Tooltip štýly */
+
+.product-tooltip {
+
+    position:absolute;
+
+    left:50%;
+
+    top:-10px;
+
+    transform:translate(-50%,-100%);
+
+    background:white;
+
+    border:2px solid #4a7c2d;
+
+    border-radius:12px;
+
+    padding:1rem;
+
+    box-shadow:0 8px 24px rgba(0,0,0,0.25);
+
+    z-index:1000;
+
+    min-width:220px;
+
+    max-width:280px;
+
+    opacity:0;
+
+    pointer-events:none;
+
+    transition:opacity 0.25s ease, transform 0.25s ease;
+
+}
+
+.product-tooltip img {
+
+    width:100%;
+
+    height:auto;
+
+    border-radius:8px;
+
+    display:block;
+
+    margin-bottom:0.6rem;
+
+}
+
+.product-tooltip-name {
+
+    display:block;
+
+    font-weight:bold;
+
+    color:#2d5016;
+
+    font-size:1.1rem;
+
+    margin-bottom:0.4rem;
+
+    text-align:center;
+
+}
+
+.product-tooltip-desc {
+
+    display:block;
+
+    font-size:0.92rem;
+
+    color:#555;
+
+    line-height:1.4;
+
+    text-align:center;
+
+    font-style:italic;
+
+}
+
+.with-image:hover .product-tooltip {
+
+    opacity:1;
+
+    pointer-events:auto;
+
+    transform:translate(-50%,-100%) scale(1);
+
+}
+
         .product-list li:hover .product-tooltip {
             display: block;
         }
@@ -193,19 +264,7 @@
         .with-image.show-tooltip .product-tooltip {
             display:block;
         }
-        .product-tooltip img {
-            width:200px;
-            height:200px;
-            object-fit:cover;
-            border-radius:8px;
-        }
-        .product-tooltip-name {
-            display:block;
-            text-align:center;
-            font-weight:600;
-            margin-top:0.5rem;
-            color:#2d5016;
-        }
+        
         .gallery{background:#fff;border-radius:15px;padding:2.5rem 1.2rem;box-shadow:0 5px 20px rgba(0,0,0,0.1);}
         .gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1.5rem;margin-top:2rem;}
         .gallery-item{position:relative;overflow:hidden;border-radius:10px;cursor:pointer;aspect-ratio:1;background:#f0f0f0;}
@@ -267,14 +326,68 @@
             }
             .hour-day strong{font-size:1.1rem;} /* Mierne zmenšené */
             .product-tooltip {
-                left:50%;
-                top:105%;
-                transform:translate(-50%,0);
-                width:90vw;
-                max-width:350px;
-                pointer-events:auto;
-                
+
+                position: fixed !important;
+
+                left: 50% !important;
+
+                top: 50% !important;
+
+                transform: translate(-50%, -50%) !important;
+
+                width: 85vw;
+
+                max-width: 400px;
+
+                max-height: 80vh;
+
+                overflow-y: auto;
+
+                z-index: 9999;
+
+                box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+
             }
+             /* Backdrop/pozadie pre zvýraznenie tooltipu */
+
+            .with-image.show-tooltip::before {
+
+                content: '';
+
+                position: fixed;
+
+                top: 0;
+
+                left: 0;
+
+                right: 0;
+
+                bottom: 0;
+
+                background: rgba(0,0,0,0.6);
+
+                z-index: 9998;
+
+                animation: fadeIn 0.2s ease;
+
+            }
+                @keyframes fadeIn {
+
+                    from { opacity: 0; }
+
+                    to { opacity: 1; }
+
+                }
+
+                
+
+                .with-image.show-tooltip .product-tooltip {
+
+                    opacity: 1;
+
+                    pointer-events: auto;
+
+                }
         }
         @media (max-width:800px){.product-details{grid-template-columns:1fr;}}
         @media (max-width:600px){
@@ -286,6 +399,16 @@
                 width:90vw;
             }
             .hour-day strong{font-size:1.05rem;margin-bottom:0.3rem;}
+            .product-tooltip {
+                width: 90vw;
+                padding: 1.2rem;
+            }
+            .product-tooltip-name {
+                font-size: 1.15rem;
+            }
+            .product-tooltip-desc {
+                font-size: 0.95rem;
+            }
         }
         @media (max-width:768px){
             body{padding-top:60px;}
