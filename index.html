@@ -177,6 +177,11 @@
             width:210px;
             pointer-events:none;
         }
+        .product-tooltip * {
+
+            pointer-events: none;
+
+        }
         .with-image:hover .product-tooltip,
         .with-image.show-tooltip .product-tooltip {
             display:block;
@@ -261,6 +266,7 @@
                 width:90vw;
                 max-width:350px;
                 pointer-events:auto;
+                
             }
         }
         @media (max-width:800px){.product-details{grid-template-columns:1fr;}}
@@ -732,31 +738,21 @@
     }
 
     if (isTouchDevice()) {
-            document.querySelectorAll('.with-image').forEach(function(li){
-                // Pridať event listener na tooltip samotný pre zatvorenie
-                const tooltip = li.querySelector('.product-tooltip');
-                if (tooltip) {
-                    tooltip.addEventListener('click', function(e) {
-                        li.classList.remove('show-tooltip');
-                        e.stopPropagation(); // Zabráni spusteniu події na rodičovi
-                    });
-                }
-                
-                li.addEventListener('click', function(e){
-                    // Ak klik prišiel z tooltipu, nerob nič (už je spracovaný vyššie)
-                    if (e.target.closest('.product-tooltip')) {
-                        return;
+        document.querySelectorAll('.with-image').forEach(function(li){
+            li.addEventListener('click', function(e){
+                // Zatvor všetky ostatné tooltipy
+                document.querySelectorAll('.with-image').forEach(function(other){
+                    if(other !== li) {
+                        other.classList.remove('show-tooltip');
                     }
-                    
-                    // Zruš všetky predchádzajúce tooltipy (okrem aktuálneho)
-                    document.querySelectorAll('.with-image').forEach(function(other){
-                        if(other !== li) other.classList.remove('show-tooltip');
-                    });
-                    // Prepni zobrazenie tooltipu
-                    li.classList.toggle('show-tooltip');
-                    e.stopPropagation();
                 });
+                
+                // Toggle aktuálny tooltip (otvor/zatvor)
+                li.classList.toggle('show-tooltip');
+                
+                e.stopPropagation();
             });
+        });
         
         // Skry všetky tooltipy pri kliknutí mimo
         document.body.addEventListener('click', function(e) {
