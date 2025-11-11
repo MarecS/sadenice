@@ -177,13 +177,16 @@
             width:210px;
             pointer-events:none;
         }
-        .product-tooltip * {
-
-            pointer-events: none;
+        .product-list li:hover .product-tooltip {
+            display: block;
         }
-         @media (hover: hover) {
+        .product-list li.show-tooltip .product-tooltip {
+            display: block;
+        }
+        /* Zakáž hover na touch zariadeniach */
+        @media (hover: none) {
             .product-list li:hover .product-tooltip {
-                display: block;
+                display: none;
             }
         }
         .with-image:hover .product-tooltip,
@@ -736,37 +739,46 @@
         }
     });
 
-    // Tooltip pre obrázky na mobile - kliknutie
-    function isTouchDevice() {
-        return (('ontouchstart' in window) || (navigator.maxTouchPoints > 0));
-    }
+        function isTouchDevice() {
+            return (('ontouchstart' in window) || (navigator.maxTouchPoints > 0));
+        }
+        
         if (isTouchDevice()) {
-        document.querySelectorAll('.with-image').forEach(function(li){
-            // Pridať event listener na tooltip samotný pre zatvorenie
-            const tooltip = li.querySelector('.product-tooltip');
-            if (tooltip) {
-                tooltip.addEventListener('click', function(e) {
-                    li.classList.remove('show-tooltip');
-                    e.stopPropagation(); // Zabráni spusteniu події na rodičovi
-                });
-            }
-            
-            li.addEventListener('click', function(e){
-                // Ak klik prišiel z tooltipu, nerob nič (už je spracovaný vyššie)
-                if (e.target.closest('.product-tooltip')) {
-                    return;
+            document.querySelectorAll('.with-image').forEach(function(li){
+                // Pridať event listener na tooltip samotný pre zatvorenie
+                const tooltip = li.querySelector('.product-tooltip');
+                if (tooltip) {
+                    tooltip.addEventListener('click', function(e) {
+                        li.classList.remove('show-tooltip');
+                        e.stopPropagation(); // Zabráni spusteniu події na rodičovi
+                    });
                 }
                 
-                // Zruš všetky predchádzajúce tooltipy (okrem aktuálneho)
-                document.querySelectorAll('.with-image').forEach(function(other){
-                    if(other !== li) other.classList.remove('show-tooltip');
+                li.addEventListener('click', function(e){
+                    // Ak klik prišiel z tooltipu, nerob nič (už je spracovaný vyššie)
+                    if (e.target.closest('.product-tooltip')) {
+                        return;
+                    }
+                    
+                    // Zruš všetky predchádzajúce tooltipy (okrem aktuálneho)
+                    document.querySelectorAll('.with-image').forEach(function(other){
+                        if(other !== li) other.classList.remove('show-tooltip');
+                    });
+                    // Prepni zobrazenie tooltipu
+                    li.classList.toggle('show-tooltip');
+                    e.stopPropagation();
                 });
-                // Prepni zobrazenie tooltipu
-                li.classList.toggle('show-tooltip');
-                e.stopPropagation();
             });
-        });
-}
-</script>
+            
+            // Skry všetky tooltipy pri kliknutí mimo
+            document.body.addEventListener('click', function(e) {
+                if (!e.target.closest('.with-image')) {
+                    document.querySelectorAll('.with-image').forEach(function(li){
+                        li.classList.remove('show-tooltip');
+                    });
+                }
+            });
+        }
+    </script>
 </body>
 </html>
