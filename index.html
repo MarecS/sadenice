@@ -158,40 +158,43 @@
         .with-image {position:relative;cursor:pointer;}
         /* Tooltip štýly */
 
-.product-tooltip {
+    .product-tooltip {
 
-    position:absolute;
+        position:absolute;
 
-    left:50%;
+        left:50%;
 
-    top:-10px;
+        top:-10px;
 
-    transform:translate(-50%,-100%);
+        transform:translate(-50%,-100%);
 
-    background:white;
+        background:white;
 
-    border:2px solid #4a7c2d;
+        border:2px solid #4a7c2d;
 
-    border-radius:12px;
+        border-radius:12px;
 
-    padding:1rem;
+        padding:1rem;
 
-    box-shadow:0 8px 24px rgba(0,0,0,0.25);
+        box-shadow:0 8px 24px rgba(0,0,0,0.25);
 
-    z-index:1000;
+        z-index:1000;
 
-    min-width:220px;
+        min-width:220px;
 
-    max-width:280px;
+        max-width:280px;
 
-    opacity:0;
+        opacity:0;
 
-    pointer-events:none;
+        pointer-events:none;
 
-    transition:opacity 0.25s ease, transform 0.25s ease;
+        transition:opacity 0.25s ease, transform 0.25s ease;
 
-}
+        overflow-y: auto;
 
+        -webkit-overflow-scrolling: touch; /* Plynulý scroll na iOS */
+
+    }
 .product-tooltip img {
 
     width:100%;
@@ -867,56 +870,149 @@
         }
         
         if (isTouchDevice()) {
+
+    let touchStartY = 0;
+
+    let touchStartX = 0;
+
+    let isSwiping = false;
+
     document.querySelectorAll('.with-image').forEach(function(li){
+
         const tooltip = li.querySelector('.product-tooltip');
+
         
+
+        // Sleduj začiatok dotyku
+
+        li.addEventListener('touchstart', function(e) {
+
+            touchStartY = e.touches[0].clientY;
+
+            touchStartX = e.touches[0].clientX;
+
+            isSwiping = false;
+
+        });
+
+        
+
+        // Sleduj pohyb - ak sa hýbe, je to scroll
+
+        li.addEventListener('touchmove', function(e) {
+
+            const touchY = e.touches[0].clientY;
+
+            const touchX = e.touches[0].clientX;
+
+            const deltaY = Math.abs(touchY - touchStartY);
+
+            const deltaX = Math.abs(touchX - touchStartX);
+
+            
+
+            // Ak pohyb je väčší ako 10px, je to swipe/scroll
+
+            if (deltaY > 10 || deltaX > 10) {
+
+                isSwiping = true;
+
+            }
+
+        });
+
+        
+
         // Funkcia na zatvorenie tooltipu
-        function closeTooltip(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            li.classList.remove('show-tooltip');
+
+        if (tooltip) {
+
+            tooltip.addEventListener('touchend', function(e) {
+
+                // Ak klikneš na tooltip (nie na scroll), zatvor ho
+
+                if (!isSwiping) {
+
+                    e.preventDefault();
+
+                    e.stopPropagation();
+
+                    li.classList.remove('show-tooltip');
+
+                }
+
+            });
+
+            
+
+            // Povoľ scrollovanie v tooltipe bez zatvorenia
+
+            tooltip.addEventListener('touchmove', function(e) {
+
+                e.stopPropagation(); // Zabráni zatvoreniu pri scrollovaní
+
+            });
+
         }
-        
+
         // Funkcia na toggle tooltipu
-        function toggleTooltip(e) {
-            // Ak klik prišiel z tooltipu, nerob nič
-            if (e.target.closest('.product-tooltip')) {
+
+        li.addEventListener('touchend', function(e){
+
+            // Ak to bol scroll, nerob nič
+
+            if (isSwiping) {
+
                 return;
+
+            }
+
+            
+
+            // Ak klik prišiel z tooltipu, nerob nič
+
+            if (e.target.closest('.product-tooltip')) {
+
+                return;
+
             }
 
             // Zruš všetky ostatné tooltipy
+
             document.querySelectorAll('.with-image').forEach(function(other){
+
                 if(other !== li) other.classList.remove('show-tooltip');
+
             });
 
             // Prepni aktuálny tooltip
-            li.classList.toggle('show-tooltip');
-            e.preventDefault();
-            e.stopPropagation();
-        }
-        
-        // Pridaj eventy pre tooltip
-        if (tooltip) {
-            tooltip.addEventListener('touchend', closeTooltip);
-            tooltip.addEventListener('click', closeTooltip);
-        }
 
-        // Pridaj eventy pre li
-        li.addEventListener('touchend', toggleTooltip);
-        li.addEventListener('click', toggleTooltip);
+            li.classList.toggle('show-tooltip');
+
+            e.preventDefault();
+
+            e.stopPropagation();
+
+        });
+
     });
 
     // Zatvor tooltip pri dotyku mimo
-    function closeAllTooltips(e) {
-        if (!e.target.closest('.with-image')) {
+
+    document.body.addEventListener('touchend', function(e) {
+
+        if (!isSwiping && !e.target.closest('.with-image')) {
+
             document.querySelectorAll('.with-image').forEach(function(li){
+
                 li.classList.remove('show-tooltip');
+
             });
+
         }
-    }
-    
-    document.body.addEventListener('touchend', closeAllTooltips);
-    document.body.addEventListener('click', closeAllTooltips);
+
+    });
+
 }
     </script>
 </body>
