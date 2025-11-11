@@ -744,41 +744,57 @@
         }
         
         if (isTouchDevice()) {
-            document.querySelectorAll('.with-image').forEach(function(li){
-                // Pridať event listener na tooltip samotný pre zatvorenie
-                const tooltip = li.querySelector('.product-tooltip');
-                if (tooltip) {
-                    tooltip.addEventListener('click', function(e) {
-                        li.classList.remove('show-tooltip');
-                        e.stopPropagation(); // Zabráni spusteniu події na rodičovi
-                    });
-                }
-                
-                li.addEventListener('click', function(e){
-                    // Ak klik prišiel z tooltipu, nerob nič (už je spracovaný vyššie)
-                    if (e.target.closest('.product-tooltip')) {
-                        return;
-                    }
-                    
-                    // Zruš všetky predchádzajúce tooltipy (okrem aktuálneho)
-                    document.querySelectorAll('.with-image').forEach(function(other){
-                        if(other !== li) other.classList.remove('show-tooltip');
-                    });
-                    // Prepni zobrazenie tooltipu
-                    li.classList.toggle('show-tooltip');
-                    e.stopPropagation();
-                });
+    document.querySelectorAll('.with-image').forEach(function(li){
+        const tooltip = li.querySelector('.product-tooltip');
+        
+        // Funkcia na zatvorenie tooltipu
+        function closeTooltip(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            li.classList.remove('show-tooltip');
+        }
+        
+        // Funkcia na toggle tooltipu
+        function toggleTooltip(e) {
+            // Ak klik prišiel z tooltipu, nerob nič
+            if (e.target.closest('.product-tooltip')) {
+                return;
+            }
+
+            // Zruš všetky ostatné tooltipy
+            document.querySelectorAll('.with-image').forEach(function(other){
+                if(other !== li) other.classList.remove('show-tooltip');
             });
-            
-            // Skry všetky tooltipy pri kliknutí mimo
-            document.body.addEventListener('click', function(e) {
-                if (!e.target.closest('.with-image')) {
-                    document.querySelectorAll('.with-image').forEach(function(li){
-                        li.classList.remove('show-tooltip');
-                    });
-                }
+
+            // Prepni aktuálny tooltip
+            li.classList.toggle('show-tooltip');
+            e.preventDefault();
+            e.stopPropagation();
+        }
+        
+        // Pridaj eventy pre tooltip
+        if (tooltip) {
+            tooltip.addEventListener('touchend', closeTooltip);
+            tooltip.addEventListener('click', closeTooltip);
+        }
+
+        // Pridaj eventy pre li
+        li.addEventListener('touchend', toggleTooltip);
+        li.addEventListener('click', toggleTooltip);
+    });
+
+    // Zatvor tooltip pri dotyku mimo
+    function closeAllTooltips(e) {
+        if (!e.target.closest('.with-image')) {
+            document.querySelectorAll('.with-image').forEach(function(li){
+                li.classList.remove('show-tooltip');
             });
         }
+    }
+    
+    document.body.addEventListener('touchend', closeAllTooltips);
+    document.body.addEventListener('click', closeAllTooltips);
+}
     </script>
 </body>
 </html>
